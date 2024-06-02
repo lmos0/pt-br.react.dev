@@ -4,23 +4,23 @@ title: 'Removing Effect Dependencies'
 
 <Intro>
 
-When you write an Effect, the linter will verify that you've included every reactive value (like props and state) that the Effect reads in the list of your Effect's dependencies. This ensures that your Effect remains synchronized with the latest props and state of your component. Unnecessary dependencies may cause your Effect to run too often, or even create an infinite loop. Follow this guide to review and remove unnecessary dependencies from your Effects.
+Quando você escreve um Effect, o linter irá verificar se você incluiu todos os valores reativos (como props e state) que o Effect lê na lista de dependências do próprio Effect . Isso garante que seu Effect permanecerá sincronizado com os props e states mais recentes do seu componente. Dependências desnecessárias podem fazer com que seu Effect seja executado demasiadamente, o mesmo criar um loop infinito. Siga este guia para revisar e removar dependências desncessárias de seus Effects.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to fix infinite Effect dependency loops
-- What to do when you want to remove a dependency
-- How to read a value from your Effect without "reacting" to it
-- How and why to avoid object and function dependencies
-- Why suppressing the dependency linter is dangerous, and what to do instead
+- Como corrigir loops inifinitos de dependências de Effects 
+- O que fazer quando você desejar remover uma dependência
+- Como ler um valor do seu Effect sem "reager" a ele
+- Como e por que evitar dependências de objetos e de funções
+- Por que suprimir o linter de dependência é perigoso, e o que fazer em vez disso
 
 </YouWillLearn>
 
-## Dependencies should match the code {/*dependencies-should-match-the-code*/}
+## As dependências devem estar de acordo com o código {/*dependencies-should-match-the-code*/}
 
-When you write an Effect, you first specify how to [start and stop](/learn/lifecycle-of-reactive-effects#the-lifecycle-of-an-effect) whatever you want your Effect to be doing:
+Quando você escreve um Effect, você primeiro deve especificar como [Iniciar e Interromper](/learn/lifecycle-of-reactive-effects#the-lifecycle-of-an-effect) o que você deseja que seu Effect faça:
 
 ```js {5-7}
 const serverUrl = 'https://localhost:1234';
@@ -34,7 +34,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Then, if you leave the Effect dependencies empty (`[]`), the linter will suggest the correct dependencies:
+Depois, se você deixar as dependência do Effect vazias (`[]`), o linterirá sugerir as dependencias corretas:
 
 <Sandpack>
 
@@ -96,7 +96,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Fill them in according to what the linter says:
+Preencha-as de acordo com o que o linter diz:
 
 ```js {6}
 function ChatRoom({ roomId }) {
